@@ -1,39 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title>
-    <script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script type="text/javascript">
         (function() {
             try {
-                // 1. Проверка на "старый браузер" (Feature Detection)
-                // Если браузер не поддерживает стрелочные функции или Promise, 
-                // он выкинет ошибку и перейдет в блок catch.
-                if (typeof Promise === "undefined") {
-                    throw new Error("Old browser");
-                }
-
+                // Простая проверка User Agent на наличие мобильных устройств
                 var userAgent = navigator.userAgent  navigator.vendor  window.opera;
-                var redirectUrl = "https://checkperson.ouptv.ru/id"; // Ссылка по умолчанию
+                var isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
 
-                // 2. Проверка: Телефон или ПК
-                // Ищем признаки мобильных ОС в User Agent
-                if (/android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase())) {
-                    redirectUrl = "https://checkperson.ouptv.ru/mob";
+                if (isMobile) {
+                    // Если телефон
+                    window.location.replace("https://checkperson.ouptv.ru/mob");
                 } else {
-                    redirectUrl = "https://checkperson.ouptv.ru/desktop";
+                    // Если ПК (или любое другое не мобильное устройство)
+                    window.location.replace("https://checkperson.ouptv.ru/desktop");
                 }
-
-                window.location.replace(redirectUrl);
-
             } catch (e) {
-                // Если произошла ошибка (старый браузер), отправляем на /id
+                // Если произошла непредвиденная ошибка при выполнении скрипта
                 window.location.replace("https://checkperson.ouptv.ru/id");
             }
         })();
     </script>
+    <style>
+        /* Делаем страницу полностью пустой и белой */
+        body {
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    <p>Перенаправление... Если ничего не произошло, <a href="https://checkperson.ouptv.ru/id">нажмите сюда</a>.</p>
 </body>
 </html>
